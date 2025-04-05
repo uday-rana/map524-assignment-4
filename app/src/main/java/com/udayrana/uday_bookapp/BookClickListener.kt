@@ -1,5 +1,7 @@
 package com.udayrana.uday_bookapp
 
 interface BookClickListener {
-    fun displayBook(id: Int)
+    fun displayBookDetails(book: Book)
+    fun editBook(book: Book)
+    fun deleteBook(book: Book)
 }

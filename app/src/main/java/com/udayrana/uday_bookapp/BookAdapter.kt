@@ -5,7 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.udayrana.uday_bookapp.databinding.BookItemBinding
 
-class BookAdapter(val bookList: MutableList<Book>, val clickListener: BookClickListener) :
+class BookAdapter(
+    private val bookList: MutableList<Book>,
+    private val bookClickListener: BookClickListener
+) :
     RecyclerView.Adapter<BookAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: BookItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -19,6 +22,12 @@ class BookAdapter(val bookList: MutableList<Book>, val clickListener: BookClickL
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val book = bookList
+        val book = bookList[position]
+
+        holder.binding.textViewBookTitle.text = book.title
+        holder.binding.textViewBookAuthor.text = book.author
+
+        holder.binding.imageViewDelete.setOnClickListener { bookClickListener.deleteBook(book) }
+        holder.binding.imageViewEdit.setOnClickListener { bookClickListener.editBook(book) }
     }
 }
