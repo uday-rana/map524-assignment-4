@@ -6,9 +6,12 @@
     android:padding="10dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/linearLayoutItemText"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/linearLayoutItemButtons"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -18,6 +21,7 @@
             android:layout_height="wrap_content"
             android:text="@string/title"
             android:textSize="18sp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="@string/author"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/linearLayoutItemButtons"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewBookTitle" />
 
@@ -41,7 +45,9 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linearLayoutItemText"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView

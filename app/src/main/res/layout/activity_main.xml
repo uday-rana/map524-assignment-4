@@ -39,11 +39,10 @@
         android:id="@+id/buttonAddBook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="5dp"
         android:layout_marginBottom="20dp"
         android:text="@string/add_a_book"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-    
+
 </androidx.constraintlayout.widget.ConstraintLayout>
