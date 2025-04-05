@@ -41,8 +41,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="16dp"
-                android:hint="@string/title">
+                android:hint="@string/title"
+                app:helperText=" ">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextTitle"
@@ -56,8 +56,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="16dp"
-                android:hint="@string/author">
+                android:hint="@string/author"
+                app:helperText=" ">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextAuthor"
@@ -71,8 +71,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="16dp"
-                android:hint="@string/genre">
+                android:hint="@string/genre"
+                app:helperText=" ">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextGenre"
@@ -86,8 +86,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="16dp"
-                android:hint="@string/price">
+                android:hint="@string/price"
+                app:helperText=" ">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextPrice"
@@ -101,8 +101,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="16dp"
-                android:hint="@string/quantity">
+                android:hint="@string/quantity"
+                app:helperText=" ">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextQuantity"
