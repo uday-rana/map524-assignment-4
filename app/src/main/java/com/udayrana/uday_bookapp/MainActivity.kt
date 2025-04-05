@@ -1,5 +1,6 @@
 package com.udayrana.uday_bookapp
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity(), BookClickListener {
         refreshBookRecyclerView()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun refreshBookRecyclerView() {
         lifecycleScope.launch {
             val bookListFromRoom = bookDao.getAll().toMutableList()
@@ -57,9 +59,7 @@ class MainActivity : AppCompatActivity(), BookClickListener {
     }
 
     private fun addBook() {
-        val addBookIntent = Intent(this@MainActivity, AddBookActivity::class.java)
-        addBookIntent.putExtra("bookList", ArrayList(bookList))
-        startActivity(addBookIntent)
+        startActivity(Intent(this@MainActivity, AddBookActivity::class.java))
     }
 
     override fun displayBookDetails(book: Book) {
