@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.udayrana.uday_bookapp.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 class MainActivity : AppCompatActivity(), BookClickListener {
     private lateinit var binding: ActivityMainBinding
@@ -55,11 +56,13 @@ class MainActivity : AppCompatActivity(), BookClickListener {
     }
 
     override fun editBook(book: Book) {
-        TODO("Not yet implemented")
+        val editBookIntent = Intent(this@MainActivity, BookFormActivity::class.java)
+        editBookIntent.putExtra("book", book)
+        startActivity(editBookIntent)
     }
 
     override fun deleteBook(book: Book) {
-        MaterialAlertDialogBuilder(this@MainActivity).setTitle("Confirm deletion")
+        MaterialAlertDialogBuilder(this@MainActivity).setTitle("Delete book?")
             .setMessage("Are you sure you want to delete ${book.title} by ${book.author}?")
             .setNegativeButton("Cancel") { dialog, _ ->
                 dialog.cancel()
@@ -81,13 +84,12 @@ class MainActivity : AppCompatActivity(), BookClickListener {
     }
 
     override fun displayBookDetails(book: Book) {
-        MaterialAlertDialogBuilder(this@MainActivity).setTitle("Book details")
+        MaterialAlertDialogBuilder(this@MainActivity).setTitle(book.title)
             .setMessage(
                 "Book ID: ${book.uid}\n" +
-                        "Title: ${book.title}\n" +
                         "Author: ${book.author}\n" +
                         "Genre: ${book.genre}\n" +
-                        "Price: CA\$${book.price}\n" +
+                        "Price: CA\$${String.format(Locale.CANADA, "%.2f", book.price)}\n" +
                         "Quantity: ${book.quantity}\n"
             )
             .setPositiveButton("OK") { dialog, _ ->

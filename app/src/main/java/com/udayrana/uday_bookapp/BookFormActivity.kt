@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 class BookFormActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBookFormBinding
     private lateinit var bookDao: BookDao
+    private var bookToEdit: Book? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,10 +18,25 @@ class BookFormActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         bookDao = AppDatabase.getInstance(this).bookDao()
-        binding.buttonSubmitForm.setOnClickListener { addBook() }
+        binding.buttonSubmitForm.setOnClickListener { submitForm() }
+        binding.buttonCancel.setOnClickListener { finish() }
+
+        bookToEdit = intent.getSerializableExtra("book") as? Book
+
+        if (bookToEdit != null) {
+            binding.editTextTitle.setText(bookToEdit!!.title)
+            binding.editTextAuthor.setText(bookToEdit!!.author)
+            binding.editTextGenre.setText(bookToEdit!!.genre)
+            binding.editTextPrice.setText(bookToEdit!!.price.toString())
+            binding.editTextQuantity.setText(bookToEdit!!.quantity.toString())
+
+            binding.materialToolbar.title = "Edit book"
+        } else {
+            binding.materialToolbar.title = "Add a book"
+        }
     }
 
-    private fun addBook() {
+    private fun submitForm() {
         lifecycleScope.launch {
             // Reset errors
             binding.textInputLayoutTitle.error = ""
@@ -29,9 +45,9 @@ class BookFormActivity : AppCompatActivity() {
             binding.textInputLayoutPrice.error = ""
             binding.textInputLayoutQuantity.error = ""
 
-            val titleInput = binding.editTextTitle.text.toString()
-            val authorInput = binding.editTextAuthor.text.toString()
-            val genreInput = binding.editTextGenre.text.toString()
+            val titleInput = binding.editTextTitle.text.toString().trim()
+            val authorInput = binding.editTextAuthor.text.toString().trim()
+            val genreInput = binding.editTextGenre.text.toString().trim()
             val priceInput = binding.editTextPrice.text.toString().toDoubleOrNull()
             val quantityInput = binding.editTextQuantity.text.toString().toIntOrNull()
 
@@ -67,19 +83,27 @@ class BookFormActivity : AppCompatActivity() {
                 return@launch
             }
 
-            bookDao.insert(
-                Book(
-                    title = titleInput,
-                    author = authorInput,
-                    genre = genreInput,
-                    price = requireNotNull(priceInput),
-                    quantity = requireNotNull(quantityInput)
-                )
+            val book = Book(
+                uid = bookToEdit?.uid ?: 0,
+                title = titleInput,
+                author = authorInput,
+                genre = genreInput,
+                price = priceInput!!,
+                quantity = quantityInput!!
             )
+            val toastVerb: String
+
+            if (bookToEdit != null) {
+                bookDao.update(book)
+                toastVerb = "Updated"
+            } else {
+                bookDao.insert(book)
+                toastVerb = "Added"
+            }
 
             Toast.makeText(
                 this@BookFormActivity,
-                "Added $titleInput by $authorInput",
+                toastVerb + " ${book.title} by ${book.author}",
                 Toast.LENGTH_LONG
             ).show()
             finish()
