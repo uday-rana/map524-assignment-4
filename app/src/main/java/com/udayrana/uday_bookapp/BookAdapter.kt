@@ -29,5 +29,10 @@ class BookAdapter(
 
         holder.binding.imageViewDelete.setOnClickListener { bookClickListener.deleteBook(book) }
         holder.binding.imageViewEdit.setOnClickListener { bookClickListener.editBook(book) }
+        holder.binding.linearLayoutItemText.setOnClickListener {
+            bookClickListener.displayBookDetails(
+                book
+            )
+        }
     }
 }

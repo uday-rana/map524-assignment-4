@@ -81,6 +81,17 @@ class MainActivity : AppCompatActivity(), BookClickListener {
     }
 
     override fun displayBookDetails(book: Book) {
-        TODO("Not yet implemented")
+        MaterialAlertDialogBuilder(this@MainActivity).setTitle("Book details")
+            .setMessage(
+                "Title: ${book.title}\n" +
+                        "Author: ${book.author}\n" +
+                        "Genre: ${book.genre}\n" +
+                        "Price: ${book.price}\n" +
+                        "Quantity: ${book.quantity}\n"
+            )
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 }
