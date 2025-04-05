@@ -83,7 +83,8 @@ class MainActivity : AppCompatActivity(), BookClickListener {
     override fun displayBookDetails(book: Book) {
         MaterialAlertDialogBuilder(this@MainActivity).setTitle("Book details")
             .setMessage(
-                "Title: ${book.title}\n" +
+                "Book ID: ${book.uid}\n" +
+                        "Title: ${book.title}\n" +
                         "Author: ${book.author}\n" +
                         "Genre: ${book.genre}\n" +
                         "Price: ${book.price}\n" +
