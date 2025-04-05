@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Uday\'s Bookstore Inventory</string>
+    <string name="app_name">Bookstore Inventory</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
     <string name="title">Title</string>
