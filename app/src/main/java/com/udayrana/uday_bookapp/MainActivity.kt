@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity(), BookClickListener {
                         "Title: ${book.title}\n" +
                         "Author: ${book.author}\n" +
                         "Genre: ${book.genre}\n" +
-                        "Price: ${book.price}\n" +
+                        "Price: CA\$${book.price}\n" +
                         "Quantity: ${book.quantity}\n"
             )
             .setPositiveButton("OK") { dialog, _ ->
