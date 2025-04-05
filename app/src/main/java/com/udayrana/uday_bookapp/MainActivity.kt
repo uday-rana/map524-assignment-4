@@ -1,5 +1,6 @@
 package com.udayrana.uday_bookapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.udayrana.uday_bookapp.databinding.ActivityMainBinding
@@ -15,5 +16,13 @@ class MainActivity : AppCompatActivity() {
 
         val db = AppDatabase.getInstance(this)
         bookDao = db.bookDao()
+
+        binding.buttonAddBook.setOnClickListener {
+            addBook()
+        }
+    }
+
+    private fun addBook() {
+        startActivity(Intent(this@MainActivity, AddBookActivity::class.java))
     }
 }
